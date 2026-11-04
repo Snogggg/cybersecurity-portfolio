@@ -1,0 +1,8 @@
+*.env
+*.key
+*.pem
+secrets*
+.vscode/
+node_modules/
+__pycache__/
+*.log

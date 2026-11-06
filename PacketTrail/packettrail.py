@@ -19,6 +19,7 @@ RCODES = {0: "NOERROR", 1: "FORMERR", 2: "SERVFAIL", 3: "NXDOMAIN", 5: "REFUSED"
 NXDOMAIN_ALERT = 3   # flag a capture with this many NXDOMAIN replies or more
 SCAN_PORTS = 10      # flag one host sending SYNs to this many ports on one target
 MAX_LISTED = 8       # max unanswered connections printed per capture
+RETRANS_ALERT = 2    # flag a capture with this many retransmitted segments or more
 
 
 def entropy(text):
@@ -54,9 +55,18 @@ def analyze_dns(packets):
     return queries, responses
 
 
+def tcp_payload_len(ip, tcp):
+    total = ip.plen if ip.version == 6 else ip.len - ip.ihl * 4
+    return max(total - tcp.dataofs * 4, 0)
+
+
 def analyze_tcp(packets):
     conns = {}
     resets = []
+    seen = set()
+    last_ack = {}
+    retrans = Counter()
+    dupacks = Counter()
     for pkt in packets:
         if not pkt.haslayer(TCP):
             continue
@@ -65,8 +75,20 @@ def analyze_tcp(packets):
             continue
         tcp = pkt[TCP]
         flags = int(tcp.flags)
-        syn, ack, rst = flags & 0x02, flags & 0x10, flags & 0x04
+        syn, ack, rst, fin = flags & 0x02, flags & 0x10, flags & 0x04, flags & 0x01
         ts = float(pkt.time)
+        flow = (ip.src, tcp.sport, ip.dst, tcp.dport)
+        size = tcp_payload_len(ip, tcp)
+        if size > 0 or syn or fin:
+            marker = (flow, tcp.seq, size, flags)
+            if marker in seen:
+                retrans[flow] += 1
+            seen.add(marker)
+        elif ack and not rst:
+            state = (tcp.ack, tcp.window)
+            if last_ack.get(flow) == state:
+                dupacks[flow] += 1
+            last_ack[flow] = state
         if syn and not ack:
             key = (ip.src, tcp.sport, ip.dst, tcp.dport)
             conn = conns.setdefault(key, {"syns": 0, "synack": False, "first": ts, "delay": None})
@@ -78,7 +100,7 @@ def analyze_tcp(packets):
                 conns[key]["delay"] = ts - conns[key]["first"]
         if rst:
             resets.append((ts, ip.src, tcp.sport, ip.dst, tcp.dport))
-    return conns, resets
+    return conns, resets, retrans, dupacks
 
 
 def endpoint(ip, port):
@@ -108,9 +130,9 @@ def dns_report(packets):
 
 
 def tcp_report(packets):
-    conns, resets = analyze_tcp(packets)
+    conns, resets, retrans, dupacks = analyze_tcp(packets)
     print("\n[TCP]")
-    if not conns and not resets:
+    if not conns and not resets and not retrans:
         print("  no TCP connection attempts")
         return
     answered = {k: v for k, v in conns.items() if v["synack"]}
@@ -132,6 +154,13 @@ def tcp_report(packets):
     for (src, dst), seen in ports.items():
         if len(seen) >= SCAN_PORTS:
             print(f"  [!] {src} sent SYNs to {len(seen)} ports on {dst}: possible port scan")
+
+    lost = sum(retrans.values())
+    if lost >= RETRANS_ALERT:
+        print(f"  [!] {lost} retransmitted segments across {len(retrans)} flows: packet loss or drops on the path")
+    dups = sum(dupacks.values())
+    if dups:
+        print(f"  [!] {dups} duplicate ACKs: a receiver is missing data it expects")
 
 
 def report(path):

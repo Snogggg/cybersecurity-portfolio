@@ -1,4 +1,4 @@
-## Client Hello (packet 942)
+﻿## Client Hello (packet 942)
 - **Record version TLS 1.0 / Handshake version TLS 1.2:** legacy compatibility values, not the real version
 - **supported_versions (TLS 1.3, TLS 1.2):** what the client actually offers. Server picks one
 - **Random:** 32 random bytes from the client, mixed into key generation
@@ -9,7 +9,7 @@
 - **status_request:** client asks for OCSP (Online Certificate Status Protocol) info = is the certificate revoked?
 - **Len 458 = 453 handshake + 5 record header**
 - **Ethernet source vendor (AzureWaveTec):** my Wi-Fi card, from the MAC prefix
-![[Pasted image 20261104200656.png]]
+![](<../screenshots/Pasted image 20261104200656.png>)
 
 ## Cipher suite anatomy
 Example: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
@@ -28,7 +28,7 @@ Example: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 ## Security tie-in
 - Weak cipher detection in audits (CBC, SHA-1, RSA key exchange, RC4, 3DES)
 - JA3/JA4 fingerprinting: hash of Client Hello fields (cipher list etc.) identifies client software, even malware, in encrypted traffic
-![[Pasted image 20261104200930.png]]
+![](<../screenshots/Pasted image 20261104200930.png>)
 
 ## Server Hello (packet 945)
 - **Negotiated cipher suite: TLS_AES_256_GCM_SHA384 (0x1302)**, the client's first choice. 0x13xx = TLS 1.3 only
@@ -37,7 +37,7 @@ Example: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 - **key_share extension:** shows the elliptic curve group used for the key exchange
 - **Certificate is encrypted in TLS 1.3** (visible in TLS 1.2)
 - Change Cipher Spec = compatibility leftover in 1.3, ignore
-![[Pasted image 20261104201333.png]]
+![](<../screenshots/Pasted image 20261104201333.png>)
 
 
 
@@ -50,4 +50,4 @@ Example: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 - Closes with FIN, ACK both ways, same as plain TCP
 - TCP Dup ACK (black/red row) = duplicate acknowledgment, harmless here
 - SYN to first encrypted data: about 20 ms
-![[Pasted image 20261104201642.png]]
+![](<../screenshots/Pasted image 20261104201642.png>)

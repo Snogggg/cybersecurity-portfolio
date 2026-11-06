@@ -1,4 +1,4 @@
-## Wireshark Packet Colors (defaults)
+﻿## Wireshark Packet Colors (defaults)
 - **Light blue:** UDP (incl. DNS)
 - **Light purple:** TCP
 - **Light green:** HTTP
@@ -9,4 +9,5 @@
 - **Red:** TCP RST (connection reset)
 - **Black row** can also just mean the selected packet
 - View > Coloring Rules shows the exact list
+
 

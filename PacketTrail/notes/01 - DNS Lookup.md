@@ -1,4 +1,4 @@
-# DNS Response Fields
+﻿# DNS Response Fields
 
 - **Flags (0x8180):** a 16-bit field in the DNS header. It's a row of on/off switches (bits) that describe the DNS message: is it a question or an answer, what was asked of the server, and did it work. Wireshark shows it as hex (0x8180) and breaks it into the bits below.
   - **QR (Query/Response) = 1:** this packet is a response (0 = query)
@@ -15,9 +15,9 @@
 - **Questions: 1** is a count in the header, not a flag. It means 1 question is included. Responses repeat the question.
 - **Think of it like:** the label on a package. It doesn't hold the data itself (that's the answer records), it tells you what kind of message this is and how it went.
 - Flags only describe the DNS message. TCP vs UDP is decided a layer lower, in the UDP/TCP header.
-![[Pasted image 20261104174411.png]]
+![](<../screenshots/Pasted image 20261104174411.png>)
 
-![[Pasted image 20261104183246.png]]
+![](<../screenshots/Pasted image 20261104183246.png>)
 
 
 -THe name is obviously the domain, the Type, Class means it belongs to the internet, TTL or time to live means how long, in seconds, a resolver or client may cache this answer before asking again, the data length is 4 which means 4 bytes which is the size of a typical IPv4.

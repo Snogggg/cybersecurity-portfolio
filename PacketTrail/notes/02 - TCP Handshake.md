@@ -1,4 +1,4 @@
-
+﻿
 
 ## Three-way handshake
 - **SYN:** client asks to open a connection (Seq=0 relative)

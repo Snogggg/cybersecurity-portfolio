@@ -1,4 +1,4 @@
-﻿# PacketTrail
+# PacketTrail
 
 PacketTrail: Wireshark network traffic analysis lab, plus a Python analyzer that summarizes DNS and TCP activity in packet captures and flags odd behavior.
 
@@ -34,3 +34,7 @@ Sample output is in `sample-output.txt`.
 - The random-name check is a simple heuristic and will miss some generated domains and flag some legitimate ones
 - Captures are small and were taken on my own home network
 - Scanning and impairment tests are run only on my own machine and lab traffic
+
+## Security tie-in
+- Retransmissions and duplicate ACKs signal loss, congestion, or interference, and can also come from tampering on the path
+- Spikes of RST or retransmissions from one host can point to a failing link, a firewall dropping traffic, or a DoS

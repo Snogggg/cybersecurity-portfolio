@@ -1,0 +1,28 @@
+﻿
+=== 04-failed-connection.pcapng (12 packets) ===
+
+[DNS]
+  no DNS traffic
+
+[TCP]
+  4 connection attempts: 0 answered, 4 unanswered, 0 RST
+  [!]  -> [2606:4700:10::ac42:93f3]:9999  no reply (3 SYNs, 2 retransmitted): filtered port or host down
+  [!]  -> 104.20.23.154:9999  no reply (3 SYNs, 2 retransmitted): filtered port or host down
+  [!]  -> [2606:4700:10::6814:179a]:9999  no reply (3 SYNs, 2 retransmitted): filtered port or host down
+  [!]  -> 172.66.147.243:9999  no reply (3 SYNs, 2 retransmitted): filtered port or host down
+
+=== 05-unexpected-dns.pcapng (8 packets) ===
+
+[DNS]
+  4 queries, 4 responses
+  A      a8f3k29xq1z.example.lan.  x1
+  AAAA   a8f3k29xq1z.example.lan.  x1
+  A      a8f3k29xq1z.example.  x1
+  AAAA   a8f3k29xq1z.example.  x1
+  response codes: NXDOMAIN x4
+  [!] 4 NXDOMAIN replies: lookups for names that do not exist
+  [!] random-looking name: a8f3k29xq1z.example. (possible DGA / generated domain)
+  [!] random-looking name: a8f3k29xq1z.example.lan. (possible DGA / generated domain)
+
+[TCP]
+  no TCP connection attempts

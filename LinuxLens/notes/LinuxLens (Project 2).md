@@ -15,11 +15,11 @@
 - **PASS / WARN / FAIL** = how the report grades each check
 
 
-![[Pasted image 20261109183438.png]]
+![screenshot](../screenshots/Pasted%20image%2020261109183438.png)
 
-![[Pasted image 20261109183450.png]]
+![screenshot](../screenshots/Pasted%20image%2020261109183450.png)
 
-![[Pasted image 20261109183513.png]]
+![screenshot](../screenshots/Pasted%20image%2020261109183513.png)
 ## What the script checks (so far)
 | Check                                         | Why it matters                                                                       |
 | --------------------------------------------- | ------------------------------------------------------------------------------------ |

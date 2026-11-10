@@ -32,7 +32,7 @@ SSH (port 22) lets users log into a machine over a network. It stays on and open
 2. Run the script and confirm the check flips from WARN to FAIL.
 3. Screenshot before and after for the README.
 4. Set it back to `prohibit-password`, then try `no` and confirm PASS.
-![[Pasted image 20261109190705.png]]
+![screenshot](../screenshots/Pasted%20image%2020261109190705.png)
 The top finding was the VM default SSH config settings where it showed 1 pass and 2 warn meaning that the 1st pass was because only 1 account inside the sudo group meaning that IF there was an attack there is only 1 attack surface to really investigate. The 2 warns came from first the SSH root login using only key and not pass still not secure enough as keys can be stolen, and the other warn comes from default users being allowed to login via password which can be exploited via brute force attack. 
 
 
@@ -40,6 +40,6 @@ The second finding was when I adjusted the settings of the SSH config to a weake
 
 
 
-![[Pasted image 20261109192218.png]]
+![screenshot](../screenshots/Pasted%20image%2020261109192218.png)
 
 In this case we went to the ssh config settings again and changes PermitRootLogin to no meaning that no root account can be  logged in using key or pass. 

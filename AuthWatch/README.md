@@ -73,3 +73,9 @@ Sample generators: `samples/make_attack_log.py` and `samples/make_v3_logs.py`.
 - Read rotated and `.gz` logs
 - Watch mode and JSON output
 - Run against a real exposed host and tune the thresholds
+
+## Notes and evidence
+Detailed write-ups with screenshots:
+- [V1 SSH Auth Log Parser](notes/V1%20SSH%20Auth%20Log%20Parser.md)
+- [V2 Verdicts, Detection Rules, and Allowlist](notes/V2%20Verdicts%2C%20Detection%20Rules%2C%20and%20Allowlist.md)
+- [V3 Zero-Trust Review of Successful Logins](notes/V3%20Zero-Trust%20Review%20of%20Successful%20Logins.md)

@@ -1,0 +1,14 @@
+# SUGGESTED by AuthWatch. Review every entry; AuthWatch never blocks anything.
+# IP blocks can hit shared NAT addresses, and attackers rotate IPs.
+198.51.100.30  suggested  # part of distributed attack on 'root'
+198.51.100.31  suggested  # part of distributed attack on 'root'
+198.51.100.32  suggested  # part of distributed attack on 'root'
+198.51.100.33  suggested  # part of distributed attack on 'root'
+198.51.100.34  suggested  # part of distributed attack on 'root'
+198.51.100.35  suggested  # part of distributed attack on 'root'
+198.51.100.36  suggested  # part of distributed attack on 'root'
+198.51.100.37  suggested  # part of distributed attack on 'root'
+198.51.100.38  suggested  # part of distributed attack on 'root'
+198.51.100.39  suggested  # part of distributed attack on 'root'
+198.51.100.40  suggested  # part of distributed attack on 'root'
+198.51.100.41  suggested  # part of distributed attack on 'root'

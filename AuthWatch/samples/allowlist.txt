@@ -1,0 +1,4 @@
+# network      label    # comment
+192.0.2.0/28   office   # office addresses
+10.8.0.0/24    vpn      # VPN pool: SSH reachable only through the VPN
+127.0.0.1      local    # this machine

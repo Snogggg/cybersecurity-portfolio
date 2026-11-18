@@ -1,0 +1,10 @@
+HashSentry check
+======================================================================
+Baseline: samples\cases\case04\baseline.json (created 2026-11-17T01:50:47+00:00, 3 file(s))
+Seal: OK (sha256, from seal file)
+Scanned: 3 file(s)   Excluded: (none)
+RESULT: 1 change(s) detected
+
+MODIFIED (content changed)
+  scripts/backup.sh   hash 33565c7e7555 -> f59c0373a1d2, size 42 -> 80
+

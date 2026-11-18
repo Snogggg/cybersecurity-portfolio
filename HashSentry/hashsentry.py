@@ -177,6 +177,17 @@ def cmd_check(args):
 
     added = sorted(set(new) - set(old))
     deleted = sorted(set(old) - set(new))
+    # rename/move detection: a deleted and an added file with identical content
+    moved, old_by_hash = [], {}
+    for p in deleted:
+        old_by_hash.setdefault(old[p]["sha256"], []).append(p)
+    for p in list(added):
+        cands = old_by_hash.get(new[p]["sha256"])
+        if cands and new[p]["size"] > 0 and old[cands[0]]["kind"] == new[p]["kind"]:
+            src = cands.pop(0)
+            moved.append((src, p))
+            added.remove(p)
+            deleted.remove(src)
     modified, perms, touched = [], [], []
     for p in sorted(set(old) & set(new)):
         o, n = old[p], new[p]
@@ -192,7 +203,7 @@ def cmd_check(args):
         elif o["mtime"] != n["mtime"]:
             touched.append(p)
 
-    changes = len(added) + len(deleted) + len(modified) + len(perms)
+    changes = len(added) + len(deleted) + len(modified) + len(perms) + len(moved)
     out = ["HashSentry check", "=" * 70,
            f"Baseline: {db} (created {doc['created']}, {len(old)} file(s))",
            f"Seal: {seal_line}",
@@ -208,6 +219,7 @@ def cmd_check(args):
             out.append("")
 
     section("MODIFIED (content changed)", [f"{p}   {note}" for p, note in modified])
+    section("MOVED OR RENAMED (same content, new path)", [f"{a}  ->  {b}" for a, b in moved])
     section("ADDED (not in baseline)", added)
     section("DELETED (in baseline, now missing)", deleted)
     section("PERMISSIONS CHANGED (content identical)", [f"{p}   {note}" for p, note in perms])

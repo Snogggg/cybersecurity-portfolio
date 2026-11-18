@@ -1,0 +1,13 @@
+HashSentry check
+======================================================================
+Baseline: samples\cases\case05\baseline.json (created 2026-11-17T01:50:47+00:00, 3 file(s))
+Seal: OK (sha256, from seal file)
+Scanned: 4 file(s)   Excluded: (none)
+RESULT: 2 change(s) detected
+
+MOVED OR RENAMED (same content, new path)
+  finance/payroll.csv  ->  tmp/p.dat
+
+ADDED (not in baseline)
+  tmp/upload.tar
+

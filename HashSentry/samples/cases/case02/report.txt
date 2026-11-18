@@ -1,0 +1,10 @@
+HashSentry check
+======================================================================
+Baseline: samples\cases\case02\baseline.json (created 2026-11-17T01:50:47+00:00, 3 file(s))
+Seal: OK (sha256, from seal file)
+Scanned: 4 file(s)   Excluded: (none)
+RESULT: 1 change(s) detected
+
+ADDED (not in baseline)
+  site/uploads/.cache.php
+

@@ -1,0 +1,10 @@
+HashSentry check
+======================================================================
+Baseline: samples\cases\case01\baseline.json (created 2026-11-17T01:50:47+00:00, 3 file(s))
+Seal: OK (sha256, from seal file)
+Scanned: 3 file(s)   Excluded: (none)
+RESULT: 1 change(s) detected
+
+MODIFIED (content changed)
+  webapp/config.ini   hash 7d3b0f24e6e5 -> cc6bc9720d34, size 48 -> 48 (same size: a size-only check would miss this)
+

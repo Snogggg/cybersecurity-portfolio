@@ -56,3 +56,9 @@ python hashsentry.py check samples/demo-tree --db samples/baseline.json
 - Real-time watching and JSON output
 - Compare against a package manager's known-good hashes (`debsums`)
 - Correlate with AuthWatch by time: a flagged login followed by a file change
+
+## Notes and evidence
+Detailed write-ups with screenshots:
+- [V1 The Baseline](notes/V1%20The%20Baseline.md)
+- [V2 Tampering and What the Check Found](notes/V2%20Tampering%20and%20What%20the%20Check%20Found.md)
+- [V3 Casebook Investigations](notes/V3%20Casebook%20Investigations.md)

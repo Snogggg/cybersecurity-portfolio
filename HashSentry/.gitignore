@@ -1,3 +1,7 @@
 samples/demo-tree/
 samples/baseline.json
 samples/baseline.json.seal
+samples/cases/*/before/
+samples/cases/*/after/
+samples/cases/*/baseline.json
+samples/cases/*/baseline.json.seal

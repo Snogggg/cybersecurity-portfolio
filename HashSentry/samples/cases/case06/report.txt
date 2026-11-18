@@ -1,0 +1,12 @@
+HashSentry check
+======================================================================
+Baseline: samples\cases\case06\baseline.json (created 2026-11-17T01:50:47+00:00, 4 file(s))
+Seal: OK (sha256, from seal file)
+Scanned: 4 file(s)   Excluded: (none)
+RESULT: 3 change(s) detected
+
+MODIFIED (content changed)
+  app/CHANGELOG.txt   hash d4bfb7d46002 -> 649086aee714, size 22 -> 42
+  app/main.py   hash 7a6dcc5cb75b -> 7bf6aa6bfe23, size 20 -> 20 (same size: a size-only check would miss this)
+  app/version.txt   hash b99b4c7cdf23 -> bd31e8d9cf8d, size 6 -> 6 (same size: a size-only check would miss this)
+
